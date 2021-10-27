@@ -37,11 +37,7 @@
                                 <td>{{ $item->employees }}</td>
                                 <td>{{ $item->employees_ft }}</td>
                                 <td>{!! $item->actions!!}</td>
-                   
-                                
-                                
-
-
+                                                                           
                             </tr>
                             @endforeach
                         </tbody>

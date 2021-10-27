@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Bussines\Client\Application\Search\ClientSearcher;
 use App\Bussines\Proyect\Application\Create\ProyectCreator;
 use App\Bussines\Proyect\Application\Search\ProyectSearcher;
-use Illuminate\Http\Request;
+use App\Http\Requests\Proyect\CreateProyectRequest;
+use App\Http\Requests\Proyect\IndexProyectRequest;
+use App\Http\Requests\Proyect\StoreProyectRequest;
 
 class ProyectController extends Controller
 {
@@ -26,7 +28,7 @@ class ProyectController extends Controller
     }
     public function index()
     {
-     //   app(IndexClientRequest::class);
+        app(IndexProyectRequest::class);
 
         $proyects = $this->proyectSearcher->__invoke();
 
@@ -35,7 +37,8 @@ class ProyectController extends Controller
 
     public function create()
     {       
-        
+        app(CreateProyectRequest::class);
+
         $clients = $this->clientSearcher->__invoke();
         if(count($clients)<=0)
         {
@@ -44,7 +47,7 @@ class ProyectController extends Controller
         return view('dashboard.contenido.proyects.create', compact('clients'));
     }
 
-    public function store(Request $request)
+    public function store(StoreProyectRequest $request)
     {
 
         $this->proyectCreator->__invoke(
