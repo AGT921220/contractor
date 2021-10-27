@@ -22,6 +22,7 @@
                             <th>Metros cuadrados</th>
                             <th>Empleados</th>
                             <th>Empleados Indirectos</th>
+                            <th>Acciones</th>
 
                             </tr>
                         </thead>
@@ -35,6 +36,10 @@
                                 <td>{{ $item->meters }}</td>
                                 <td>{{ $item->employees }}</td>
                                 <td>{{ $item->employees_ft }}</td>
+                                <td>{!! $item->actions!!}</td>
+                   
+                                
+                                
 
 
                             </tr>
@@ -49,7 +54,8 @@
                                 <th>Metros cuadrados</th>
                                 <th>Empleados</th>
                                 <th>Empleados Indirectos</th>
-    
+                                <th>Acciones</th>
+
                             </tr>
                         </tfoot>
 

@@ -1,15 +1,10 @@
 <?php
 
-namespace App\Bussines\Proyect\Domain;
+namespace App\Bussines\GeneralCatalog\Domain;
 
-class Proyect
+class GeneralCatalog
 {
-    public const STATUS_CREATED='created';//Boton Cargar catalogo(conceptos) y Eliminar
-    public const STATUS_CREATED_TEXT= 'Cargar Catálogos';
-    public const STATUS_OPEN='open';
-    public const STATUS_CONTEST='contest';//Tiene que tener contratistas creados
-    public const STATUS_BUILD='build'; //Se pueden aceptar más contest(Abrir o Cerrar)
-    public const STATUS_TERMINATE ='terminate';
+
 
     private $proyectId;
     private $clientId;

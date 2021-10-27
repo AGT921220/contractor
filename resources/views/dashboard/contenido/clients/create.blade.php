@@ -29,7 +29,7 @@
 
 
                     <div class="form-group">
-                      <label>RFD</label>
+                      <label>RFC</label>
                       <input type="text" name="rfc" placeholder="RFD" class="form-control mb-2" required="" {{ old('rfc') }}/>
                       @error('rfc')
                       <div class="text-danger">Ingrese un Nombre correcto</div>

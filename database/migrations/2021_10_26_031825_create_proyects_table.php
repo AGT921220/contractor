@@ -22,6 +22,7 @@ class CreateProyectsTable extends Migration
             $table->double('meters');
             $table->integer('employees');
             $table->integer('employees_ft');
+            $table->string('status');
             $table->timestamps();
             $table->softDeletes();
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Bussines\Proyect\Application\Create;
+namespace App\Bussines\GeneralCatalog\Application\Create;
 
-use App\Bussines\Proyect\Domain\Proyect;
-use App\Bussines\Proyect\Domain\ProyectRepository;
+use App\Bussines\GeneralCatalog\Domain\GeneralCatalog;
+use App\Bussines\GeneralCatalog\Domain\GeneralCatalogRepository;
 
-class ProyectCreator
+class GeneralCatalogCreator
 {
     private $repository;
 
-    public function __construct(ProyectRepository $repository)
+    public function __construct(GeneralCatalogRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -24,7 +24,7 @@ class ProyectCreator
         $employeesFt
     ) {
 
-        $proyect = new Proyect(
+        $proyect = new GeneralCatalog(
             null,
             $proyectId,
             $name,

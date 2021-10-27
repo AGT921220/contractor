@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Bussines\Proyect\Infrastructure;
+namespace App\Bussines\GeneralCatalog\Infrastructure;
 
-use App\Bussines\Proyect\Domain\Proyect as DomainProyect;
-use App\Proyect;
-use App\Bussines\Proyect\Domain\ProyectRepository;
+use App\Bussines\GeneralCatalog\Domain\GeneralCatalog as DomainGeneralCatalog;
+use App\GeneralCatalog;
+use App\Bussines\GeneralCatalog\Domain\GeneralCatalogRepository;
 
-class ProyectEloquentRepository implements ProyectRepository
+class GeneralCatalogEloquentRepository implements GeneralCatalogRepository
 {
 
-    public function create(DomainProyect $proyect)
+    public function create(DomainGeneralCatalog $proyect)
     {
-        $model = new Proyect();
+        $model = new DomainGeneralCatalog();
         $model->client_id=$proyect->getClientId();
         $model->name=$proyect->getName();
         $model->address=$proyect->getAddress();
@@ -28,29 +28,26 @@ class ProyectEloquentRepository implements ProyectRepository
 
     public function search()
     {
-        $items = Proyect::select('proyects.*','clients.company as client')
+        $items = GeneralCatalog::select('proyects.*','clients.company as client')
         ->join('clients', 'clients.id', 'proyects.client_id')
         ->get();
 
         $proyects = [];
         foreach($items as $item)
         {
-            $item->actions = $this->determineAction($item->status,$item->id);
+            $item->actions = $this->determineAction($item->status);
             $proyects[] = $item;
         
         }
         return $proyects;
     }
 
-    private function determineAction($status, $id): ?string
+    private function determineAction($status): ?string
     {
         $action = '';
         switch ($status) {
-            case DomainProyect::STATUS_CREATED:
-                // $action = '<button class="btn btn-primary" href="/proyectos/'.$id.'/catalogo-general/nuevo">'
-                // .DomainProyect::STATUS_CREATED_TEXT.'</button>';
-                $action = '<a class="btn btn-primary" href="/proyectos/'.$id.'/catalogo-general/nuevo">'
-                .DomainProyect::STATUS_CREATED_TEXT.'</a>';
+            case DomainGeneralCatalog::STATUS_CREATED:
+                $action = '<button class="btn btn-primary">'.DomainGeneralCatalog::STATUS_CREATED_TEXT.'</button>';
                 break;
             
             default:

@@ -23,8 +23,8 @@ class ClientTest extends TestCase
 
 
          $response = $this->get('/users');
-         $response->getOriginalContent()->users;
-
+         $res = $response->getOriginalContent()->users;
+        dd($res);
          $this->assertIndexClients($response);
     }
 

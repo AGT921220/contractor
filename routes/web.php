@@ -43,4 +43,11 @@ Route::group(['prefix' => 'proyectos'], function () {
     Route::get('/', 'ProyectController@index')->name('index_proyects');
      Route::get('/nuevo', 'ProyectController@create')->name('create_proyects');
      Route::post('/guardar', 'ProyectController@store')->name('store_proyects');
+
+
+
+//CATALOGO GENERAL
+Route::get('/{id}/catalogo-general/nuevo', 'GeneralCatalogController@create')->name('create_general_catalog');
+
+
 });
