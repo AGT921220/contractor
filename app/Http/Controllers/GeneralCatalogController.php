@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Bussines\GeneralCatalog\Application\Search\GeneralCatalogSearcher;
 use App\Bussines\Proyect\Domain\Proyect as DomainProyect;
-use Illuminate\Http\Request;
+use App\Http\Requests\GeneralCatalog\CreateGeneralCatalogRequest;
+use App\Http\Requests\GeneralCatalog\IndexGeneralCatalogRequest;
+use App\Http\Requests\GeneralCatalog\StoreGeneralCatalogRequest;
 use App\Imports\UsersImports;
 use App\Proyect;
 use Maatwebsite\Excel\Facades\Excel;
@@ -22,12 +24,15 @@ class GeneralCatalogController extends Controller
     }
     public function index($proyectId)
     {
+        app(IndexGeneralCatalogRequest::class);
+
         $generalCatalogs = $this->gcSearcher->__invoke($proyectId);
 
         return view('dashboard.contenido.generalCatalog.index', compact('generalCatalogs'));
     }
     public function create($proyectId)
     {
+        app(CreateGeneralCatalogRequest::class);
 
         $proyectId = $proyectId;
         return view('dashboard.contenido.generalCatalog.create',compact('proyectId'));
@@ -35,7 +40,7 @@ class GeneralCatalogController extends Controller
         return $proyectId;
     }
 
-    public function store(Request $request, int $proyectId)
+    public function store(StoreGeneralCatalogRequest $request, int $proyectId)
     {
 
         try {
