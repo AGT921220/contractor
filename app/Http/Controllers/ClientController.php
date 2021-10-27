@@ -19,6 +19,8 @@ class ClientController extends Controller
     {
         $this->clientSearcher = $searcher;
         $this->clientCreator = $creator;
+        $this->middleware('auth');
+
     }
 
     public function index()

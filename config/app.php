@@ -1,6 +1,7 @@
 <?php
 
 use App\Providers\ClientServiceProvider;
+use App\Providers\GeneralCatalogServiceProvider;
 use App\Providers\ProyectServiceProvider;
 
 return [
@@ -177,8 +178,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         ClientServiceProvider::class,
-        ProyectServiceProvider::class
+        ProyectServiceProvider::class,
+        GeneralCatalogServiceProvider::class
 
     ],
     
@@ -231,6 +234,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

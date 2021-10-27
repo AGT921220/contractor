@@ -22,9 +22,9 @@ class CreateGeneralCatalogsTable extends Migration
             $table->string('clave');
             $table->string('description');
             $table->integer('measurement_units_id');
-            $table->float('quantity');
-            $table->float('unit_price');
-            $table->float('total');
+            $table->decimal('quantity');
+            $table->decimal('unit_price');
+            $table->decimal('total');
             $table->timestamps();
         });
     }

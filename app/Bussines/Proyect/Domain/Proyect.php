@@ -5,11 +5,13 @@ namespace App\Bussines\Proyect\Domain;
 class Proyect
 {
     public const STATUS_CREATED='created';//Boton Cargar catalogo(conceptos) y Eliminar
-    public const STATUS_CREATED_TEXT= 'Cargar Catálogos';
     public const STATUS_OPEN='open';
     public const STATUS_CONTEST='contest';//Tiene que tener contratistas creados
     public const STATUS_BUILD='build'; //Se pueden aceptar más contest(Abrir o Cerrar)
     public const STATUS_TERMINATE ='terminate';
+
+    public const STATUS_CREATED_TEXT= 'Cargar Catálogos';
+
 
     private $proyectId;
     private $clientId;

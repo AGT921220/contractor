@@ -2,7 +2,6 @@
 
 namespace App\Bussines\GeneralCatalog\Application\Search;
 
-
 use App\Bussines\GeneralCatalog\Domain\GeneralCatalogRepository;
 
 class GeneralCatalogSearcher
@@ -14,8 +13,7 @@ class GeneralCatalogSearcher
         $this->repository = $repository;
     }
 
-    public function __invoke() {
-
-        return $this->repository->search();
+    public function __invoke($proyectId) {
+        return $this->repository->search($proyectId);
     }
 }

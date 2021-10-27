@@ -155,6 +155,9 @@
             <div class="alert alert-danger">{{ session('error') }}</div>
             @elseif(session('mensaje'))
             <div class="alert alert-warning">{{ session('mensaje') }}</div>
+            @elseif(session('errorExcel'))
+            <div class="alert alert-danger">{!! session('errorExcel') !!}</div>
+
         @endif
 
     <main class="py-4">

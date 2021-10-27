@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <span>Lista de Proyectos</span>
+                    <span>Lista de Catalogos Generales</span>
                 </div>
 
 
@@ -15,28 +15,28 @@
                     <table class="table" id="datatable" style="overflow-x:scroll">
                         <thead>
                             <tr>
-                            <th>Cliente</th>
-                            <th>Proyecto</th>
-                            <th>Dirección</th>
-                            <th>Presupuesto General</th>
-                            <th>Metros cuadrados</th>
-                            <th>Empleados</th>
-                            <th>Empleados Indirectos</th>
-                            <th>Acciones</th>
+                            <th>Area</th>
+                            <th>Subarea</th>
+                            <th>Clave</th>
+                            <th>Descripción</th>
+                            <th>Unidades</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Total</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($proyects as $item)
+                            @foreach ($generalCatalogs as $item)
                             <tr>
-                                <td>{{ $item->client }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->address }}</td>
-                                <td>{{ $item->general_budget }}</td>
-                                <td>{{ $item->meters }}</td>
-                                <td>{{ $item->employees }}</td>
-                                <td>{{ $item->employees_ft }}</td>
-                                <td>{!! $item->actions!!}</td>
+                                <td>{{ $item->area }}</td>
+                                <td>{{ $item->subarea }}</td>
+                                <td>{{ $item->clave }}</td>
+                                <td>{{ $item->description }}</td>
+                                <td>{{ $item->units }}</td>
+                                <td>{{ $item->quantity }}</td>
+                                <td>{{ number_format($item->unit_price,2) }}</td>
+                                <td>{{ number_format($item->total,2)}}</td>
                    
                                 
                                 
@@ -47,15 +47,15 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Cliente</th>
-                                <th>Proyecto</th>
-                                <th>Dirección</th>
-                                <th>Presupuesto General</th>
-                                <th>Metros cuadrados</th>
-                                <th>Empleados</th>
-                                <th>Empleados Indirectos</th>
-                                <th>Acciones</th>
-
+                                <th>Area</th>
+                                <th>Subarea</th>
+                                <th>Clave</th>
+                                <th>Descripción</th>
+                                <th>Unidades</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Total</th>
+    
                             </tr>
                         </tfoot>
 

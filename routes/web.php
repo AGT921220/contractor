@@ -38,6 +38,10 @@ Route::group(['prefix' => 'clientes'], function () {
      Route::get('/nuevo', 'ClientController@create')->name('create_clients');
      Route::post('/guardar', 'ClientController@store')->name('store_clients');
 });
+
+
+
+
 //PROYECTOS
 Route::group(['prefix' => 'proyectos'], function () {
     Route::get('/', 'ProyectController@index')->name('index_proyects');
@@ -48,6 +52,7 @@ Route::group(['prefix' => 'proyectos'], function () {
 
 //CATALOGO GENERAL
 Route::get('/{id}/catalogo-general/nuevo', 'GeneralCatalogController@create')->name('create_general_catalog');
-
+Route::post('/{id}/catalogo-general/guardar', 'GeneralCatalogController@store')->name('store_general_catalog');
+Route::get('/{id}/catalogo-general/ver', 'GeneralCatalogController@index')->name('index_general_catalog');
 
 });

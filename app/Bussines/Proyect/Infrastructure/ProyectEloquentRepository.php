@@ -5,6 +5,7 @@ namespace App\Bussines\Proyect\Infrastructure;
 use App\Bussines\Proyect\Domain\Proyect as DomainProyect;
 use App\Proyect;
 use App\Bussines\Proyect\Domain\ProyectRepository;
+use App\GeneralCatalog;
 
 class ProyectEloquentRepository implements ProyectRepository
 {
@@ -42,17 +43,20 @@ class ProyectEloquentRepository implements ProyectRepository
         return $proyects;
     }
 
-    private function determineAction($status, $id): ?string
+    private function determineAction($status, $proyectId): ?string
     {
         $action = '';
         switch ($status) {
             case DomainProyect::STATUS_CREATED:
-                // $action = '<button class="btn btn-primary" href="/proyectos/'.$id.'/catalogo-general/nuevo">'
-                // .DomainProyect::STATUS_CREATED_TEXT.'</button>';
-                $action = '<a class="btn btn-primary" href="/proyectos/'.$id.'/catalogo-general/nuevo">'
+                $action = '<a class="btn btn-primary" href="/proyectos/'.$proyectId.'/catalogo-general/nuevo">'
                 .DomainProyect::STATUS_CREATED_TEXT.'</a>';
                 break;
-            
+
+                case DomainProyect::STATUS_OPEN:
+                    $action = '<a class="btn btn-info" href="/proyectos/'.$proyectId.'/catalogo-general/ver">'
+                    .GeneralCatalog::SHOW.'</a>';
+                    break;
+    
             default:
 
                 break;

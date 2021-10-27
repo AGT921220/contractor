@@ -32,7 +32,7 @@
                                 <td>{{ $item->client }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->address }}</td>
-                                <td>{{ $item->general_budget }}</td>
+                                <td>{{ number_format($item->general_budget,2) }}</td>
                                 <td>{{ $item->meters }}</td>
                                 <td>{{ $item->employees }}</td>
                                 <td>{{ $item->employees_ft }}</td>
