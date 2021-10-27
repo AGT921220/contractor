@@ -9,7 +9,7 @@ class GeneralCatalogController extends Controller
     public function create($id)
     {
 
-        return view('dashboard.contenido.generalCatalog.index');
+        return view('dashboard.contenido.generalCatalog.create');
 
         return $id;
     }
