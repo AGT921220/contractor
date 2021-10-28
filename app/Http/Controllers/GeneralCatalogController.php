@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Bussines\GeneralCatalog\Application\Create\GeneralCatalogCreator;
+use App\Bussines\GeneralCatalog\Application\Importer\GeneralCatalogImporter;
 use App\Bussines\GeneralCatalog\Application\Search\GeneralCatalogSearcher;
-use App\Bussines\Proyect\Domain\Proyect as DomainProyect;
 use App\Http\Requests\GeneralCatalog\CreateGeneralCatalogRequest;
 use App\Http\Requests\GeneralCatalog\IndexGeneralCatalogRequest;
 use App\Http\Requests\GeneralCatalog\StoreGeneralCatalogRequest;
-use App\Imports\UsersImports;
-use App\Proyect;
-use Maatwebsite\Excel\Facades\Excel;
 
 class GeneralCatalogController extends Controller
 {
 
-    public $gcSearcher;
+    private $gcSearcher;
+    private $gcImporter;
+    private $gcCreator;
 
-    public function __construct(GeneralCatalogSearcher $gcSearcher)
-    {
+    public function __construct(
+        GeneralCatalogSearcher $gcSearcher,
+        GeneralCatalogImporter $gcImporter,
+        GeneralCatalogCreator $gcCreator
+    ) {
         $this->gcSearcher = $gcSearcher;
+        $this->gcImporter = $gcImporter;
+        $this->gcCreator = $gcCreator;
         $this->middleware('auth');
-
     }
     public function index($proyectId)
     {
@@ -35,7 +39,7 @@ class GeneralCatalogController extends Controller
         app(CreateGeneralCatalogRequest::class);
 
         $proyectId = $proyectId;
-        return view('dashboard.contenido.generalCatalog.create',compact('proyectId'));
+        return view('dashboard.contenido.generalCatalog.create', compact('proyectId'));
 
         return $proyectId;
     }
@@ -44,24 +48,18 @@ class GeneralCatalogController extends Controller
     {
 
         try {
-            Excel::import(new UsersImports($proyectId,auth()->user()->id),request()->file('generalCatalog'));
+
+            $this->gcImporter->__invoke($request, $proyectId);
         } catch (\Exception $th) {
             $errors = explode(',', $th->getMessage());
             $showErrors = [];
-            foreach($errors as $error)
-            {
-                $showErrors[] = $error.'<br>';
+            foreach ($errors as $error) {
+                $showErrors[] = $error . '<br>';
             }
 
-            return back()->with('errorExcel', 'No se pudo cargar su Excel debido a que los siguientes registros son erroneos: <br><br>'.implode(',',$showErrors));
+            return back()->with('errorExcel', 'No se pudo cargar su Excel debido a que los siguientes registros son erroneos: <br><br>' . implode(',', $showErrors));
         }
 
-        $model = Proyect::where('id', $proyectId)->first();
-        $model->status = DomainProyect::STATUS_OPEN;
-        $model->save();
-        
         return redirect()->route('index_proyects')->with('success', 'Catalogos Cargados Correctamente');
-
-
     }
 }

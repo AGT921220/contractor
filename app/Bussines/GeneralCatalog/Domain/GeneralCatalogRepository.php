@@ -2,9 +2,12 @@
 
 namespace App\Bussines\GeneralCatalog\Domain;
 
-use Illuminate\Support\Collection;
+use App\Bussines\GeneralCatalog\Application\Create\GeneralCatalogCreator;
+use App\Http\Requests\GeneralCatalog\StoreGeneralCatalogRequest;
 
 interface GeneralCatalogRepository
 {
     public function search(int $proyectId);
+    public function create(GeneralCatalog $generalCatalog):void;
+    public function import(StoreGeneralCatalogRequest $request,int $proyectId, GeneralCatalogCreator $gcCreator);
 }

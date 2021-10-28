@@ -15,7 +15,7 @@ class ProyectCreator
     }
 
     public function __invoke(
-        $proyectId,
+        $clientId,
         $name,
         $address,
         $generalBudget,
@@ -26,7 +26,7 @@ class ProyectCreator
 
         $proyect = new Proyect(
             null,
-            $proyectId,
+            $clientId,
             $name,
             $address,
             $generalBudget,
