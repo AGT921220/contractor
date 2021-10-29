@@ -51,8 +51,8 @@ Route::group(['prefix' => 'proyectos'], function () {
 
 
 //CATALOGO GENERAL
-Route::get('/{id}/catalogo-general/nuevo', 'GeneralCatalogController@create')->name('create_general_catalog');
-Route::post('/{id}/catalogo-general/guardar', 'GeneralCatalogController@store')->name('store_general_catalog');
+//Route::get('/{id}/catalogo-general/nuevo', 'GeneralCatalogController@create')->name('create_general_catalog');
+Route::post('/{id}/catalogo-general/bulk', 'GeneralCatalogController@bulk')->name('bulk_general_catalog');
 Route::get('/{id}/catalogo-general/ver', 'GeneralCatalogController@index')->name('index_general_catalog');
-
+Route::post('/{id}/catalogo-general/store', 'GeneralCatalogController@store')->name('store_general_catalog');
 });

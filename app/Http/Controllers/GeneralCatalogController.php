@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Bussines\GeneralCatalog\Application\Create\GeneralCatalogCreator;
 use App\Bussines\GeneralCatalog\Application\Importer\GeneralCatalogImporter;
 use App\Bussines\GeneralCatalog\Application\Search\GeneralCatalogSearcher;
-use App\Http\Requests\GeneralCatalog\CreateGeneralCatalogRequest;
+use App\Http\Requests\GeneralCatalog\BulkGeneralCatalogRequest;
 use App\Http\Requests\GeneralCatalog\IndexGeneralCatalogRequest;
 use App\Http\Requests\GeneralCatalog\StoreGeneralCatalogRequest;
 
@@ -32,23 +32,21 @@ class GeneralCatalogController extends Controller
 
         $generalCatalogs = $this->gcSearcher->__invoke($proyectId);
 
-        return view('dashboard.contenido.generalCatalog.index', compact('generalCatalogs'));
+        return view('dashboard.contenido.generalCatalog.index', compact('generalCatalogs','proyectId'));
     }
-    public function create($proyectId)
+    // public function create($proyectId)
+    // {
+    //     app(CreateGeneralCatalogRequest::class);
+
+    //     $proyectId = $proyectId;
+    //     return view('dashboard.contenido.generalCatalog.create', compact('proyectId'));
+
+    //     return $proyectId;
+    // }
+
+    public function bulk(BulkGeneralCatalogRequest $request, int $proyectId)
     {
-        app(CreateGeneralCatalogRequest::class);
-
-        $proyectId = $proyectId;
-        return view('dashboard.contenido.generalCatalog.create', compact('proyectId'));
-
-        return $proyectId;
-    }
-
-    public function store(StoreGeneralCatalogRequest $request, int $proyectId)
-    {
-
         try {
-
             $this->gcImporter->__invoke($request, $proyectId);
         } catch (\Exception $th) {
             $errors = explode(',', $th->getMessage());
@@ -60,6 +58,12 @@ class GeneralCatalogController extends Controller
             return back()->with('errorExcel', 'No se pudo cargar su Excel debido a que los siguientes registros son erroneos: <br><br>' . implode(',', $showErrors));
         }
 
-        return redirect()->route('index_proyects')->with('success', 'Catalogos Cargados Correctamente');
+        return back()->with('success', 'Catalogos Cargados Correctamente');
+    }
+
+    public function store(StoreGeneralCatalogRequest $request, int $proyectId)
+    {
+        dump($proyectId);
+        dd($request->input());
     }
 }

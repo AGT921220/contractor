@@ -15,7 +15,7 @@ class CreateGeneralCatalogsTable extends Migration
     {
         Schema::create('general_catalogs', function (Blueprint $table) {
             $table->id();
-            $table->integer('proyect_id');
+            $table->integer('proyect_id')->unsigned();
             $table->integer('user_id');
             $table->string('area');
             $table->string('subarea')->nullable();
@@ -25,7 +25,10 @@ class CreateGeneralCatalogsTable extends Migration
             $table->decimal('quantity');
             $table->decimal('unit_price');
             $table->decimal('total');
+            $table->foreign('proyect_id')->references('id')->on('proyects');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

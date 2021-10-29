@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body">
 
-                  <form method="POST" action="/proyectos/{{$proyectId}}/catalogo-general/guardar" enctype="multipart/form-data">
+                  <form method="POST" action="/proyectos/{{$proyectId}}/catalogo-general/bulk" enctype="multipart/form-data">
                     @csrf
 
                     <label for="">Selectiona Tu Excel</label>

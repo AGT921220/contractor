@@ -25,10 +25,9 @@ class GeneralCatalogEloquentRepository implements GeneralCatalogRepository
     public function import($request, $proyectId, $gcCreator)
     {
         Excel::import(new GeneralCatalogImports($proyectId,auth()->user()->id, MeasurementUnits::get(), $gcCreator),$request->file('generalCatalog'));
-        $model = Proyect::where('id', $proyectId)->first();
-        $model->status = DomainProyect::STATUS_OPEN;
-        $model->save();
-
+        // $model = Proyect::where('id', $proyectId)->first();
+        // $model->status = DomainProyect::STATUS_OPEN;
+        // $model->save();
     }
 
     public function create(DomainGeneralCatalog $generalCatalog): void

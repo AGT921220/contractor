@@ -29,18 +29,18 @@ class ProyectEloquentRepository implements ProyectRepository
 
     public function search()
     {
-        $items = Proyect::select('proyects.*','clients.company as client')
-        ->join('clients', 'clients.id', 'proyects.client_id')
+        $proyects = Proyect::select('proyects.*','clients.company as client')
+        ->join('clients', 'proyects.client_id', 'clients.id')
+//        ->with('generalCatalogs')
+        ->orderBy('proyects.id', 'asc')
         ->get();
 
-        $proyects = [];
-        foreach($items as $item)
-        {
-            $item->actions = $this->determineAction($item->status,$item->id);
-            $proyects[] = $item;
-        
-        }
-        return $proyects;
+        return $proyects->map(function ($proyect){
+            $proyect->actions = $this->determineAction($proyect->status,$proyect->id);
+            return $proyect;
+        });
+
+
     }
 
     private function determineAction($status, $proyectId): ?string
@@ -48,13 +48,14 @@ class ProyectEloquentRepository implements ProyectRepository
         $action = '';
         switch ($status) {
             case DomainProyect::STATUS_CREATED:
-                $action = '<a class="btn btn-primary" href="/proyectos/'.$proyectId.'/catalogo-general/nuevo">'
-                .DomainProyect::STATUS_CREATED_TEXT.'</a>';
+                $action = '<a class="btn btn-info" href="/proyectos/'.$proyectId.'/catalogo-general/ver">'
+                .DomainProyect::STATUS_CREATED_TEXT.'</a>'
+//                <a class="btn btn-info" href="/proyectos/'.$proyectId.'/catalogo-general/ver">'.GeneralCatalog::SHOW.'</a>'
+                ;
                 break;
 
                 case DomainProyect::STATUS_OPEN:
-                    $action = '<a class="btn btn-info" href="/proyectos/'.$proyectId.'/catalogo-general/ver">'
-                    .GeneralCatalog::SHOW.'</a>';
+                    $action = '';
                     break;
     
             default:
