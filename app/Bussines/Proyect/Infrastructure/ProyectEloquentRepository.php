@@ -31,27 +31,32 @@ class ProyectEloquentRepository implements ProyectRepository
     {
         $proyects = Proyect::select('proyects.*','clients.company as client')
         ->join('clients', 'proyects.client_id', 'clients.id')
-//        ->with('generalCatalogs')
+        ->with('generalCatalogs')
         ->orderBy('proyects.id', 'asc')
         ->get();
 
+
+
         return $proyects->map(function ($proyect){
-            $proyect->actions = $this->determineAction($proyect->status,$proyect->id);
+            $proyect->actions = $this->determineAction($proyect->status,$proyect->id, $proyect->generalCatalogs()->count());
             return $proyect;
         });
 
 
     }
 
-    private function determineAction($status, $proyectId): ?string
+    private function determineAction(string $status, int $proyectId, int $generalCatalogs): ?string
     {
         $action = '';
         switch ($status) {
             case DomainProyect::STATUS_CREATED:
                 $action = '<a class="btn btn-info" href="/proyectos/'.$proyectId.'/catalogo-general/ver">'
-                .DomainProyect::STATUS_CREATED_TEXT.'</a>'
-//                <a class="btn btn-info" href="/proyectos/'.$proyectId.'/catalogo-general/ver">'.GeneralCatalog::SHOW.'</a>'
-                ;
+                .DomainProyect::STATUS_CREATED_TEXT.'</a>';
+                if($generalCatalogs>=1)
+                {
+                    $action .= '<a style="margin-top:5px;" class="btn btn-success" href="/proyectos/'.$proyectId.'/catalogo-general/ver">'
+                    .DomainProyect::GENERATE_CONTEST.'</a>';
+                }
                 break;
 
                 case DomainProyect::STATUS_OPEN:

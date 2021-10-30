@@ -14,7 +14,7 @@ class CreateGeneralCatalogsTable extends Migration
     public function up()
     {
         Schema::create('general_catalogs', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('proyect_id')->unsigned();
             $table->integer('user_id');
             $table->string('area');

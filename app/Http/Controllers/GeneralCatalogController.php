@@ -11,6 +11,7 @@ use App\Http\Requests\GeneralCatalog\BulkGeneralCatalogRequest;
 use App\Http\Requests\GeneralCatalog\IndexGeneralCatalogRequest;
 use App\Http\Requests\GeneralCatalog\StoreGeneralCatalogRequest;
 use App\MeasurementUnits;
+use App\Proyect;
 
 class GeneralCatalogController extends Controller
 {
@@ -36,7 +37,7 @@ class GeneralCatalogController extends Controller
 
         $this->middleware('auth');
     }
-    public function index($proyectId)
+    public function index(int $proyectId)
     {
         app(IndexGeneralCatalogRequest::class);
 

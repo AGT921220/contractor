@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientsTable extends Migration
+class CreateContestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,13 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('contests', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('company');
-            $table->string('rfc');
-            $table->string('reg_patronal');
-            $table->string('rep_legal');
-            $table->string('address');
-            $table->string('email');
-            $table->string('phone');
+            $table->integer('proyect_id')->unsigned();
+            $table->foreign('proyect_id')->references('id')->on('proyects');
             $table->timestamps();
             $table->softDeletes();
+
         });
     }
 
@@ -34,6 +30,6 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('contests');
     }
 }

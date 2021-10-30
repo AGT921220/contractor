@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests\GeneralCatalog;
 
+use App\Proyect;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class IndexGeneralCatalogRequest extends FormRequest
 {
@@ -15,9 +17,7 @@ class IndexGeneralCatalogRequest extends FormRequest
     public function authorize()
     {
 
-       // return redirect()->route('')->with('message', "Lang::get('...')");
-        //return redirect()->route('/')->with('message', "Lang::get('...')");
-        if(auth()->user()->user_type==User::DIRECTOR){
+        if (auth()->user()->user_type == User::DIRECTOR && Proyect::where('id', $this->route('id'))->exists()) {
             return true;
         }
         return false;
@@ -34,4 +34,5 @@ class IndexGeneralCatalogRequest extends FormRequest
             //
         ];
     }
+
 }

@@ -11,7 +11,7 @@ class Proyect
     public const STATUS_TERMINATE ='terminate';
 
     public const STATUS_CREATED_TEXT= 'Cargar Catálogos';
-
+    public const GENERATE_CONTEST = 'Crear Concursos';
 
     private $proyectId;
     private $clientId;
