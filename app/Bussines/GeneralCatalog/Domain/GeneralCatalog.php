@@ -4,6 +4,7 @@ namespace App\Bussines\GeneralCatalog\Domain;
 
 class GeneralCatalog
 {
+    public const EDIT_TEXT ='Editar Partida';
 
 
     private $gcId;
@@ -35,8 +36,8 @@ class GeneralCatalog
         $this->userId = $userId;
         $this->area = $area;
         $this->subarea = $subarea;
-        $this->clave = $clave;
-        $this->description = $description;
+        $this->clave = strtoupper($clave);
+        $this->description = ltrim($description);
         $this->measurementUnitId = $measurementUnitId;
         $this->quantity = $quantity;
         $this->unitPrice = $unitPrice;

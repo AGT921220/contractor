@@ -14,8 +14,8 @@
                                 enctype="multipart/form-data" style="display: flex; flex-direction:column">
                                 @csrf
     
-                                <label class="center btn btn-warning" for="select_excel">Selectiona Un Excel</label>
-                                <input type="file" required="" name="generalCatalog" id="select_excel" style="display: none"/>
+                                {{-- <label class="center btn btn-warning" for="select_excel">Selectiona Un Excel</label> --}}
+                                <input type="file" required="" name="generalCatalog" id="select_excel" style="display: flex"/>
                                     <br>
                                 <button class="btn btn-primary btn-block" type="submit">Agregar Excel</button>
                             </form>
@@ -26,14 +26,19 @@
                                 enctype="multipart/form-data">
                                 @csrf
     
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
+                                    <label>Clave</label>
+                                    <input type="text" name="clave"  class="form-control " required=""/>
+                                </div>
+
+                                <div class="form-group col-md-4">
                                     <label>Area</label>
                                     <input type="text" name="area"  class="form-control " required=""/>
                                 </div>
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label>Subarea</label>
-                                    <input type="text" name="area"  class="form-control " />
+                                    <input type="text" name="subarea"  class="form-control " />
                                 </div>
               
                                 <div class="form-group col-md-12">
@@ -41,16 +46,27 @@
                                     <input type="text" name="description"  class="form-control " required=""/>
                                 </div>
               
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label>Cantidad</label>
-                                    <input type="text" name="quantity"  class="form-control " required=""/>
+                                    <input type="number" step="any" name="quantity"  class="form-control " required=""/>
                                 </div>
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label>Precio Unitario</label>
-                                    <input type="text" name="unit_price"  class="form-control " />
+                                    <input type="number" step="any" name="unit_price"  class="form-control " />
                                 </div>
+                                
+                                <div class="form-group col-md-4">
+                                    <label>Unidad</label>
+                                    <select name="measurement_unit_id" id="" class="form-control">
+                                            @foreach ($measurementUnits as $item)
+                                                    <option value="{{$item->id}}">{{$item->abbreviation}}</option>
+                                            @endforeach
+                                    </select>
+                                </div>
+
               
+                                <input type="hidden" value="{{count($generalCatalogs)}}">
                                 <button class="btn btn-primary btn-block" type="submit">Agregar</button>
                             </form>
                         </div>
@@ -65,28 +81,30 @@
                         <table class="table" id="datatable" style="overflow-x:scroll">
                             <thead>
                                 <tr>
+                                    <th>Clave</th>
                                     <th>Area</th>
                                     <th>Subarea</th>
-                                    <th>Clave</th>
                                     <th>Descripción</th>
                                     <th>Unidades</th>
                                     <th>Cantidad</th>
                                     <th>Precio Unitario</th>
                                     <th>Total</th>
+                                    <th>Acciones</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($generalCatalogs as $item)
                                     <tr>
+                                        <td>{{ $item->clave }}</td>
                                         <td>{{ $item->area }}</td>
                                         <td>{{ $item->subarea }}</td>
-                                        <td>{{ $item->clave }}</td>
                                         <td>{{ $item->description }}</td>
                                         <td>{{ $item->units }}</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ number_format($item->unit_price, 2) }}</td>
                                         <td>{{ number_format($item->total, 2) }}</td>
+                                        <td>{!! $item->actions!!}</td>
 
 
 
@@ -97,14 +115,15 @@
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>Clave</th>
                                     <th>Area</th>
                                     <th>Subarea</th>
-                                    <th>Clave</th>
                                     <th>Descripción</th>
                                     <th>Unidades</th>
                                     <th>Cantidad</th>
                                     <th>Precio Unitario</th>
                                     <th>Total</th>
+                                    <th>Acciones</th>
 
                                 </tr>
                             </tfoot>

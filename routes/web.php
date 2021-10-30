@@ -55,4 +55,8 @@ Route::group(['prefix' => 'proyectos'], function () {
 Route::post('/{id}/catalogo-general/bulk', 'GeneralCatalogController@bulk')->name('bulk_general_catalog');
 Route::get('/{id}/catalogo-general/ver', 'GeneralCatalogController@index')->name('index_general_catalog');
 Route::post('/{id}/catalogo-general/store', 'GeneralCatalogController@store')->name('store_general_catalog');
+Route::get('/{proyectId}/catalogo-general/{id}/editar', 'GeneralCatalogController@edit')->name('edit_general_catalog');
+Route::put('/{proyectId}/catalogo-general/{id}/guardar', 'GeneralCatalogController@update')->name('store_general_catalog');
+//proyects/2/catalogo-general/13/guardar
+
 });

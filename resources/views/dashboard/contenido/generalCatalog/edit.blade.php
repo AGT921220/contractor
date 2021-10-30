@@ -7,55 +7,51 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header mb-2" style="    display: flex;justify-content: space-between;">
-                    <span>Editar Cliente</span>
-                    <a href="/users" class="btn btn-primary btn-sm">Volver a lista de usuarios...</a>
+                    <span>Editar Partida</span>
+                    {{-- <a href="/users" class="btn btn-primary btn-sm">Volver a lista de usuarios...</a> --}}
                 </div>
                 <div class="card-body">
 
-                  <form method="POST" action="/users/update/{{$user->id}}" enctype="multipart/form-data">
+                  <form method="POST" action="/proyectos/{{$proyectId}}/catalogo-general/{{$generalCatalogId}}/guardar" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
 
 
-                    <div class="form-group">
-                      <label>Nombre</label>
-                    <input type="text" name="name" placeholder="Nombre" value="{{$user->name}}" class="form-control mb-2" required="" {{ old('name') }}/>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Apellido</label>
-                      <input type="text" name="lname" placeholder="Apellido" value="{{$user->lname}}" class="form-control mb-2" required="" {{ old('lname') }}/>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Teléfono</label>
-                      <input type="number" name="phone" value="{{$user->phone}}" class="form-control mb-2" required="" {{ old('phone') }}/>
-                    </div>
-
-                    <div class="form-check" style="text-align: center;display: flex;justify-content: center;margin:1.2em auto;">
-                        <input type="checkbox" class="form-check-input" id="new_password">
-                        <label class="form-check-label" for="new_password">Cambiar contraseña</label>
-                    </div>
-
-                    <div class="new_pass">
-
-                    </div>
-
-
-
-
-
-                    <div class="form-group">
-                      <label>Imágen de perfil</label>
-                      <div class="form-group image_container" style="justify-content: center;text-align: center;align-items: center;display: flex;flex-direction: column;margin: auto;">
-                              <img class="profile_image_show" style="width:100px;" src="{{ asset(($user->photo)?$user->photo:'images/profile-empty.png') }}">
-                            <label for="imagen_profile" style="cursor:pointer;">Seleccionar imágen</label>
-                            <input style="display: none;" type="file" name="photo" id="imagen_profile" accept="image/x-png,image/gif,image/jpeg">
-                      </div>
+                    <div class="form-group col-md-4">
+                      <label>Clave</label>
+                      <input type="text" name="clave" value="{{$generalCatalog->getClave()}}"  class="form-control " required=""/>
                   </div>
 
 
-                    <input type="hidden" name="user_type" value="{{$user->user_type}}">
+                    <div class="form-group col-md-4">
+                      <label>Area</label>
+                      <input type="text" name="area" value="{{$generalCatalog->getArea()}}"  class="form-control " required=""/>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label>Subarea</label>
+                    <input type="text" name="subarea"  value="{{$generalCatalog->getSubarea()}}" class="form-control " required=""/>
+                </div>
+
+
+                <div class="form-group col-md-12">
+                  <label>Descripción</label>
+                  <textarea name="description"value="{{$generalCatalog->getDescription()}}" class="form-control"  id="" cols="30" rows="10">{{ltrim($generalCatalog->getDescription())}}</textarea>
+              </div>
+
+
+              <div class="form-group col-md-6">
+                <label>Unitario</label>
+                <input type="text" name="unit_price"  value="{{$generalCatalog->getUnitPrice()}}" class="form-control " required=""/>
+            </div>
+
+
+            <div class="form-group col-md-6">
+              <label>Cantidad</label>
+              <input type="text" name="quantity"  value="{{$generalCatalog->getQuantity()}}" class="form-control " required=""/>
+          </div>
+
+                   
 
                     <button class="btn btn-primary btn-block" type="submit">Guardar</button>
                   </form>

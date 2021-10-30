@@ -39,6 +39,7 @@ $(document).ready(function() {
         $(this).html( '<input type="text" placeholder="Buscar '+title+'" />' );
     } );
  
+    
     // DataTable
     
     var table = $('#datatable').DataTable({

@@ -10,4 +10,6 @@ interface GeneralCatalogRepository
     public function search(int $proyectId);
     public function create(GeneralCatalog $generalCatalog):void;
     public function import(StoreGeneralCatalogRequest $request,int $proyectId, GeneralCatalogCreator $gcCreator);
+    public function find(int $proyectId, int $generalCatalogId);
+    public function update(GeneralCatalog $generalCatalog):void;
 }

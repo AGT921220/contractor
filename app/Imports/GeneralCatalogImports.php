@@ -41,7 +41,7 @@ class GeneralCatalogImports implements ToCollection
         $valid = true;
         $errors = [];
         foreach ($rows as $key => $value) {
-            if (!in_array(strtoupper($value[3]), $measurements)) {
+            if (!in_array(strtoupper($value[4]), $measurements)) {
                 $valid = false;
                 $reg = $key + 1;
                 $errors[] = 'Registro:' . $reg . 'Concepto:' . trim($value[0]) . 'Descripción:' . trim($value[2]);
@@ -59,30 +59,23 @@ class GeneralCatalogImports implements ToCollection
     {
         foreach ($rows as $row) {
 
-            $catalogCount = GeneralCatalog::where('user_id', $this->userId)
-                ->where('proyect_id', $this->proyectId)
-                ->where('area', $row[0])->count() + 1;
 
-            $measurementUnit = MeasurementUnits::where('abbreviation', $row[3])->first();
-
-
-            $clave = mb_substr(strtoupper($row[0]), 0, 2) 
-            . $catalogCount;
-            $this->saveGeneralCatalog($row, $clave, $measurementUnit->id);
+            $measurementUnit = MeasurementUnits::where('abbreviation', $row[4])->first();
+            $this->saveGeneralCatalog($row, $measurementUnit->id);
         }
     }
 
-    private function saveGeneralCatalog($row, $clave, $measurementUnitId): void
+    private function saveGeneralCatalog($row, $measurementUnitId): void
     {
         $this->gcCreator->__invoke(
         $this->proyectId,
         $this->userId,
-        $row[0],
         $row[1],
-        $clave,
         $row[2],
+        $row[0],
+        $row[3],
         $measurementUnitId,
-        $row[4],
-        $row[5]);
+        $row[5],
+        $row[6]);
     }
 }
