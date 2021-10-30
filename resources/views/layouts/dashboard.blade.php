@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AgsoftWeb | Plataforma</title>
+  <title>Venproco | Contractor</title>
 
 
   <link rel="stylesheet" href="{{asset('/css/principal.css')}}">
@@ -62,9 +62,9 @@
     <!-- Logo -->
     <a class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>W</span>
+      <span class="logo-mini"><b>C</b>V</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Agsoft</b>Web</span>
+      <span class="logo-lg"><b>Contractor</b>Venproco</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -174,7 +174,7 @@
     <div class="pull-right hidden-xs">
 
     </div>
-    <strong>Copyright &copy; 2021 <a href="https://agsoftweb.com.mx">Agsoft Web</a>.</strong>  </footer>
+    <strong>Copyright &copy; 2021 <a >Contractor Venproco</a>.</strong>  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark" style="display: none;">
