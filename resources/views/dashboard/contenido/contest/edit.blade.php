@@ -30,7 +30,7 @@
 
                   <div class="form-group col-md-4">
                     <label>Subarea</label>
-                    <input type="text" name="subarea"  value="{{$generalCatalog->getSubarea()}}" class="form-control " />
+                    <input type="text" name="subarea"  value="{{$generalCatalog->getSubarea()}}" class="form-control " required=""/>
                 </div>
 
 

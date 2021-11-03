@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contest extends Model
+class ContestGeneralCatalog extends Model
 {
     public function generalCatalogs()
     {
-        return $this->hasMany(ContestGeneralCatalog::class);
+        return $this->hasMany(GeneralCatalog::class, 'id');
     }
+
 }

@@ -30,7 +30,11 @@ Route::get('/users/edit/{id}', 'UserController@edit');
 Route::put('/users/update/{id}', 'UserController@update');
 Route::delete('/users/destroy/{id}', 'UserController@destroy');
 
+//SUBCONTRATISTAS
+Route::group(['prefix' => 'subcontratistas'], function () {
 
+Route::get('/nuevo', 'SubcontractorController@create')->name('create_subcontractor');
+});
 
 //CLIENTES
 Route::group(['prefix' => 'clientes'], function () {
@@ -57,6 +61,13 @@ Route::get('/{id}/catalogo-general/ver', 'GeneralCatalogController@index')->name
 Route::post('/{id}/catalogo-general/store', 'GeneralCatalogController@store')->name('store_general_catalog');
 Route::get('/{proyectId}/catalogo-general/{id}/editar', 'GeneralCatalogController@edit')->name('edit_general_catalog');
 Route::put('/{proyectId}/catalogo-general/{id}/guardar', 'GeneralCatalogController@update')->name('store_general_catalog');
-//proyects/2/catalogo-general/13/guardar
+
+
+//CONCURSOS
+Route::get('/{id}/concursos/ver', 'ContestController@index')->name('index_contest');
+// Route::post('/{id}/catalogo-general/store', 'GeneralCatalogController@store')->name('store_general_catalog');
+// Route::get('/{proyectId}/catalogo-general/{id}/editar', 'GeneralCatalogController@edit')->name('edit_general_catalog');
+// Route::put('/{proyectId}/catalogo-general/{id}/guardar', 'GeneralCatalogController@update')->name('store_general_catalog');
+
 
 });

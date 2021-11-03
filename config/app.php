@@ -1,6 +1,7 @@
 <?php
 
 use App\Providers\ClientServiceProvider;
+use App\Providers\ContestServiceProvider;
 use App\Providers\GeneralCatalogServiceProvider;
 use App\Providers\ProyectServiceProvider;
 
@@ -181,7 +182,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         ClientServiceProvider::class,
         ProyectServiceProvider::class,
-        GeneralCatalogServiceProvider::class
+        GeneralCatalogServiceProvider::class,
+        ContestServiceProvider::class
 
     ],
     

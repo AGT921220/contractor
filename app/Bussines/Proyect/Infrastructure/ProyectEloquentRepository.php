@@ -54,7 +54,7 @@ class ProyectEloquentRepository implements ProyectRepository
                 .DomainProyect::STATUS_CREATED_TEXT.'</a>';
                 if($generalCatalogs>=1)
                 {
-                    $action .= '<a style="margin-top:5px;" class="btn btn-success" href="/proyectos/'.$proyectId.'/catalogo-general/ver">'
+                    $action .= '<a style="margin-top:5px;" class="btn btn-success" href="/proyectos/'.$proyectId.'/concursos/ver">'
                     .DomainProyect::GENERATE_CONTEST.'</a>';
                 }
                 break;

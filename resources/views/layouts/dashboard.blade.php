@@ -42,6 +42,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css">
 
 
+
   <!-- fullCalendar -->
   <link href="{{asset('calendario/packages/core/main.css')}}" rel='stylesheet' />
   <link href="{{asset('calendario/packages/daygrid/main.css')}}" rel='stylesheet' />
