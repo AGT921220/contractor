@@ -24,7 +24,6 @@ class ProyectController extends Controller
         $this->clientSearcher = $clientSearcher;
         $this->proyectCreator = $creator;
         $this->middleware('auth');
-
     }
     public function index()
     {

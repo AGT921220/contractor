@@ -15,7 +15,7 @@ class User extends Authenticatable
 
     protected $table = 'users';
     public const DIRECTOR = 'director';
-
+    public const SUBCONTRATISTA ='subcontratista';
     public const NOT_ACCESS_INDEX = 'No tienes permisos para ver usuarios';
     /**
      * The attributes that are mass assignable.

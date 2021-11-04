@@ -4,6 +4,7 @@ use App\Providers\ClientServiceProvider;
 use App\Providers\ContestServiceProvider;
 use App\Providers\GeneralCatalogServiceProvider;
 use App\Providers\ProyectServiceProvider;
+use App\Providers\SubcontractorServiceProvider;
 
 return [
 
@@ -183,7 +184,8 @@ return [
         ClientServiceProvider::class,
         ProyectServiceProvider::class,
         GeneralCatalogServiceProvider::class,
-        ContestServiceProvider::class
+        ContestServiceProvider::class,
+        SubcontractorServiceProvider::class
 
     ],
     

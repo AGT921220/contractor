@@ -113,6 +113,7 @@
 
   @if(auth()->user()->user_type=='director')
                 @include('dashboard.partials.contenido.usuarios')
+                @include('dashboard.partials.contenido.subcontractors')
                 @include('dashboard.partials.contenido.clients')
                 @include('dashboard.partials.contenido.proyects')
   @endif

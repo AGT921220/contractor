@@ -82,7 +82,6 @@
                   <select class="form-control" id="user_rol" name="user_type" {{ old('user_type') }}>
                     <option value="gerente">Gerente</option>
                     <option value="supervisor">Supervisor</option>
-                    <option value="subcontratista">Subcontratista</option>
                   </select>
                   @error('user_type')
                   <div class="text-danger">Ingrese un nombre correcto</div>

@@ -8,11 +8,11 @@
             <div class="card">
                 <div class="card-header mb-2" style="    display: flex;justify-content: space-between;">
                     <span>Agregar Subcontratista</span>
-                    <a href="/users" class="btn btn-primary btn-sm">Volver a lista de usuarios...</a>
+                    <a href="/subcontratistas" class="btn btn-primary btn-sm">Volver a lista de usuarios...</a>
                 </div>
                 <div class="card-body">
 
-                  <form method="POST" action="/users" enctype="multipart/form-data">
+                  <form method="POST" action="/subcontratistas/guardar" enctype="multipart/form-data">
                     @csrf
 
 
@@ -74,24 +74,7 @@
                             <input style="display: none;" type="file" name="photo" id="imagen_profile" accept="image/x-png,image/gif,image/jpeg">
                       </div>
                   </div>
-
-
-                  <div class="form-group">
-
-                    <label >Tipo de usuario</label>
-                  <select class="form-control" id="user_rol" name="user_type" {{ old('user_type') }}>
-                    <option value="gerente">Gerente</option>
-                    <option value="supervisor">Supervisor</option>
-                    <option value="subcontratista">Subcontratista</option>
-                  </select>
-                  @error('user_type')
-                  <div class="text-danger">Ingrese un nombre correcto</div>
-                  @enderror
-                </div>
-
-
-        
-
+     
 
                     <button class="btn btn-primary btn-block" type="submit">Agregar</button>
                   </form>

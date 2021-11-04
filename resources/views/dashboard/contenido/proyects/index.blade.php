@@ -36,7 +36,15 @@
                                 <td>{{ $item->meters }}</td>
                                 <td>{{ $item->employees }}</td>
                                 <td>{{ $item->employees_ft }}</td>
-                                <td>{!! $item->actions!!}</td>
+                                <td>{!! $item->actions!!}
+                                    @if ($item->contests()->count() && $item->status=='created')
+                                    <form style="margin-top:5px;" method="POST" action="/proyectos/{{$item->id}}/activate" enctype="multipart/form-data">
+                                        @csrf
+
+                                        <button class="btn btn-primary btn-block" type="submit">Activar Proyecto</button>
+                                    </form>
+                                    @endif
+                                </td>
                                                                            
                             </tr>
                             @endforeach

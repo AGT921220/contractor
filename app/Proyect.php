@@ -12,6 +12,11 @@ class Proyect extends Model
         return $this->hasMany(GeneralCatalog::class);
     }
 
+    public function contests()
+    {
+        return $this->hasMany(Contest::class);
+    }
+
     public function scopeWithGeneralCatalogs($query)
     {
         $query->with(['generalCatalogs'=>

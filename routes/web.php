@@ -32,8 +32,11 @@ Route::delete('/users/destroy/{id}', 'UserController@destroy');
 
 //SUBCONTRATISTAS
 Route::group(['prefix' => 'subcontratistas'], function () {
-
+Route::get('/', 'SubcontractorController@index')->name('index_subcontractor');
 Route::get('/nuevo', 'SubcontractorController@create')->name('create_subcontractor');
+Route::post('/guardar', 'SubcontractorController@store')->name('store_subcontractor');
+Route::get('/{scId}', 'SubcontractorController@show')->name('show_subcontractor');
+
 });
 
 //CLIENTES
@@ -51,6 +54,7 @@ Route::group(['prefix' => 'proyectos'], function () {
     Route::get('/', 'ProyectController@index')->name('index_proyects');
      Route::get('/nuevo', 'ProyectController@create')->name('create_proyects');
      Route::post('/guardar', 'ProyectController@store')->name('store_proyects');
+     Route::post('/{proyectId}/activate', 'ProyectActivatorController@store')->name('activate_proyects');
 
 
 

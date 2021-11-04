@@ -17,31 +17,23 @@
                             <th>Apellido</th>
                             <th>Teléfono</th>
                             <th>Correo</th>
-                            <th>Tipo de usuario</th>
                             <th>Foto</th>
                             <th>Acciones</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $item)
+                            @foreach ($subcontractors as $item)
                             <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->lname }}</td>
-                                <td>{{ $item->phone }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>{{ $item->user_type }}</td>
+                                <td>{{ $item->getName() }}</td>
+                                <td>{{ $item->getLname() }}</td>
+                                <td>{{ $item->getPhone() }}</td>
+                                <td>{{ $item->getEmail() }}</td>
                                 <td>
-                                    <img style="width:50px; height:50px" src="{{ asset(($item->photo)?$item->photo:'images/profile-empty.png') }}">
+                                    <img style="width:50px; height:50px" src="{{ asset(($item->getPhoto())?$item->getPhoto():'images/profile-empty.png') }}">
                                 </td>
-                                    <td class="actions_table">
-                                        <a  href="/users/edit/{{$item->id}}" class="btn btn-primary">Editar</a>
-
-                                        <form action="/users/destroy/{{$item->id}}" class="d-inline" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        </form>
+                                <td>
+                                    <a href="/subcontratistas/{{$item->getId()}}" class="btn btn-info">Ver</a>
                                 </td>
 
                             </tr>
@@ -53,8 +45,7 @@
                                 <th>Apellido</th>
                                 <th>Teléfono</th>
                                 <th>Correo</th>
-                                <th>Tipo de usuario</th>
-                                <th>Foto</th>
+                                    <th>Foto</th>
                                 <th>Accion</th>
                             </tr>
                         </tfoot>

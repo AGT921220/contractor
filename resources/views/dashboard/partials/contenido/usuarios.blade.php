@@ -9,6 +9,5 @@
     <ul class="treeview-menu">
       <li ><a href="/users"><i class="fa fa-list"></i>Ver Usuarios</a></li>
       <li ><a href="/users/create"><i class="fa fa-plus"></i>Agregar Staff</a></li>
-      <li ><a href="/usuarios/subcotratistas/nuevo"><i class="fa fa-plus"></i>Agregar Subcontratista</a></li>
     </ul>
 </li>
