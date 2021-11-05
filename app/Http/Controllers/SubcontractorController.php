@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Bussines\Proyect\Application\Search\ActiveProyectSearcher;
 use App\Bussines\Proyect\Application\Search\ProyectSearcher;
+use App\Bussines\Proyect\Application\SubcontractorSearch\SubcontractorProyectSearcher;
 use App\Bussines\Subcontractor\Application\Create\SubcontractorCreator;
 use App\Bussines\Subcontractor\Application\Find\SubcontractorFinder;
 use App\Bussines\Subcontractor\Application\Search\SubcontractorSearcher;
 use App\Http\Requests\Subcontractor\IndexSubcontractorRequest;
 use App\Http\Requests\Subcontractor\StoreSubcontractorRequest;
-use App\Proyect;
 
 class SubcontractorController extends Controller
 {
@@ -16,17 +17,20 @@ class SubcontractorController extends Controller
     private $searcher;
     private $finder;
     private $proyectSearcher;
+    private $scProyectSearcher;
 
     public function __construct(
         SubcontractorCreator $creator,
         SubcontractorSearcher $searcher,
         SubcontractorFinder $finder,
-        ProyectSearcher $proyectSearcher
+        ActiveProyectSearcher $proyectSearcher,
+        SubcontractorProyectSearcher $scProyectSearcher
     ) {
         $this->creator = $creator;
         $this->searcher = $searcher;
         $this->finder = $finder;
         $this->proyectSearcher = $proyectSearcher;
+        $this->scProyectSearcher = $scProyectSearcher;
         $this->middleware('auth');
     }
 
@@ -40,12 +44,10 @@ class SubcontractorController extends Controller
     public function show(int $scId)
     {
         $subcontractor = $this->finder->__invoke($scId)->toArray();
-        $userProyects = Proyect::join('user_proyects','user_proyects.proyect_id', 'proyects.id')
-        ->where('user_proyects.user_id', $scId)
-        ->get();
+        $userProyects = $this->scProyectSearcher->__invoke($scId)->toArray();
+        $activeProyects = $this->proyectSearcher->__invoke()->toArray();
 
-        $proyects = [];
-        return view('dashboard.contenido.subcontractors.show', compact('subcontractor','proyects'));
+        return view('dashboard.contenido.subcontractors.show', compact('subcontractor','userProyects' ,'activeProyects'));
     }
     public function create()
     {

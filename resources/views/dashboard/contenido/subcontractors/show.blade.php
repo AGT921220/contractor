@@ -10,6 +10,7 @@
 
                     <div class="card-body">
                       
+                        <input type="hidden" name="subcontractor_id" value="{{$subcontractor['id']}}" id="subcontractor_id" placeholder="Nombre" class="form-control mb-2" disabled=""/>
 
                     <div class="form-group">
                         <label>Nombre</label>
@@ -46,18 +47,32 @@
                     </div>
 
 
+
                     <h2 class="text-center">Asignar a Proyecto</h2>
 
+                    @if ($activeProyects)
+                    <form action="/proyectos/" method="POST">
+                        @csrf
                     <div class="card-body">                      
                         <div class="form-group">
-
-                            <label >Tipo de usuario</label>
-                          <select class="form-control" id="user_rol" name="user_type" {{ old('user_type') }}>
-                            <option value="gerente">Gerente</option>
-                            <option value="supervisor">Supervisor</option>
+                            <label >Proyecto</label>
+                          <select class="form-control" id="proyect_id_select" name="proyect_id">
+                              @foreach ($activeProyects as $item)
+                                    <option value="{{$item['id']}}">{{$item['name']}}</option>
+                              @endforeach
                           </select>
+
+
+                        <div class="form-group">
+                            <label >Concurso</label>
+                            <select class="form-control" id="contest_id_select" name="proyect_id">
+                            </select>
                         </div>
-                    </div>
+                    </div>  
+
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>                      
+                    @endif
 
 
                     <h2 class="text-center">Proyects</h2>
@@ -66,42 +81,29 @@
                         <table class="table" id="datatable" style="overflow-x:scroll">
                             <thead>
                                 <tr>
-                                    <th>Cliente</th>
                                     <th>Proyecto</th>
-                                    <th>Dirección</th>
-                                    <th>Presupuesto General</th>
-                                    <th>Metros cuadrados</th>
-                                    <th>Empleados</th>
-                                    <th>Empleados Indirectos</th>
-                                    <th>Acciones</th>
+                                    <th>Estatus</th>
+                                    <th>Cocurso</th>
+                                    <th>Estatus</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($proyects as $item)
+                                @foreach ($userProyects as $item)
                                     <tr>
-                                        <td>{{ $item->client }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->address }}</td>
-                                        <td>{{ number_format($item->general_budget, 2) }}</td>
-                                        <td>{{ $item->meters }}</td>
-                                        <td>{{ $item->employees }}</td>
-                                        <td>{{ $item->employees_ft }}</td>
-                                        <td>{!! $item->actions !!}</td>
-
+                                        <td>{{ $item['proyect'] }}</td>
+                                        <td>{{ $item['proyect_status'] }}</td>
+                                        <td>{{ $item['contest'] }}</td>
+                                        <td>{{ $item['contest_status'] }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Cliente</th>
                                     <th>Proyecto</th>
-                                    <th>Dirección</th>
-                                    <th>Presupuesto General</th>
-                                    <th>Metros cuadrados</th>
-                                    <th>Empleados</th>
-                                    <th>Empleados Indirectos</th>
-                                    <th>Acciones</th>
+                                    <th>Estatus</th>
+                                    <th>Cocurso</th>
+                                    <th>Estatus</th>
 
                                 </tr>
                             </tfoot>
@@ -145,3 +147,4 @@
 </style>
 <script src="{{ asset('js/datatables.js') }}" defer></script>
 <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
+<script src="{{ asset('js/subcontractors/actions.js') }}" defer></script>

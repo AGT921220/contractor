@@ -19,4 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/users', 'UserController@users')->name('users');
+
+//PROYECTOS
+Route::group(['prefix' => 'proyectos'], function () {
+    Route::post('{proyectId}/contests-available/{scID}', 'Api\AvailableContestController@index')->name('store_clients');
+// proyect+'/contests-available/'+subcontractor
+// Route::post('/guardar', 'ClientController@store')->name('store_clients');
+
+});
+

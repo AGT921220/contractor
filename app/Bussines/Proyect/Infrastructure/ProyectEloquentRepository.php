@@ -118,4 +118,24 @@ class ProyectEloquentRepository implements ProyectRepository
 
         return $action;
     }
+
+    public function subcontractorProyectSearch(int $scId)
+    {
+
+        $proyects = Proyect::
+        select('proyects.name as proyect', 'proyects.status as proyect_status', 'contests.name as contest','contests.status as contest_status')
+        ->join('contests', 'contests.proyect_id', 'proyects.id')
+        ->join('user_contests', 'user_contests.contest_id', 'contests.id')
+        ->where('user_contests.user_id', $scId)
+        ->get();
+        return $proyects;
+    }
+
+    public function activeProyectSearch()
+    {
+        $proyects = Proyect::
+        where('status',DomainProyect::STATUS_ACTIVE)
+        ->get();
+        return $proyects;
+    }
 }

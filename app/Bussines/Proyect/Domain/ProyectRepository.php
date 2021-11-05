@@ -10,4 +10,7 @@ interface ProyectRepository
     public function find(int $proyectId):DomainProyect;
     public function store(DomainProyect $proyect):DomainProyect;
     public function search();
+    public function subcontractorProyectSearch(int $scId);
+    public function activeProyectSearch();
+   
 }

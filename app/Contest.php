@@ -10,4 +10,6 @@ class Contest extends Model
     {
         return $this->hasMany(ContestGeneralCatalog::class);
     }
+
+
 }
