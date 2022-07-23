@@ -1,1 +1,0 @@
-<li class="{{ ( Route::is('home')) ? 'active' : '' }}"><a href="{{ route('home') }}"><i class="fa fa-home"></i> <span>Inicio</span></a></li>

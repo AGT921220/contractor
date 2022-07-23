@@ -1,1 +1,0 @@
-<li class="{{ ( Route::is('firma_digital')) ? 'active' : '' }}"><a href="{{ route('firma_digital') }}"><i class="fa fa-pencil"></i> <span>Firma Digital</span></a></li>
