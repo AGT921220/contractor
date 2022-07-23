@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.247744">
+    <testsuite name="Feature" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.247744">
+      <testsuite name="Tests\Feature\ClientTest" file="/home/alfredo/Desarrollo/contractor/tests/Feature/ClientTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.247744">
+        <testcase name="canIndexClients" class="Tests\Feature\ClientTest" classname="Tests.Feature.ClientTest" file="/home/alfredo/Desarrollo/contractor/tests/Feature/ClientTest.php" line="18" assertions="1" time="0.247744"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
